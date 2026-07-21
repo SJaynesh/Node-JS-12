@@ -1,0 +1,13 @@
+{
+  "name": "ch-3-modules",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "node index"
+  }
+}
