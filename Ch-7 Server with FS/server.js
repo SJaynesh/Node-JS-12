@@ -6,7 +6,11 @@ const server = http.createServer((req, res) => {
 
     const nets = os.networkInterfaces();
 
-    fs.appendFile('log.txt', `New User Request : ${req.url} IP : ${nets['Ethernet 3'][1].address} Date & Time : ${new Date()}\n`, () => { });
+    if (req.url === '/favicon.ico') {
+        return;
+    }
+
+    fs.appendFile('log.txt', `New User Request : ${req.url} IP : ${nets['Wi-Fi'][1].address} Date & Time : ${new Date()}\n`, () => { });
 
     const path = req.url; // path = '/contact'
     let file = "";
