@@ -2,8 +2,11 @@ const express = require('express');
 
 require('./config/db.config');
 
+const userModel = require("./model/user.model");
+
 const app = express();
 
+// Middleware
 app.use(express.urlencoded());
 
 // APIs
@@ -11,6 +14,8 @@ app.use(express.urlencoded());
 // Insert User API
 app.post('/addUser', (req, res) => {
     console.log(req.body);
+
+
     return res.json({ message: "Student added successfully.." });
 });
 
