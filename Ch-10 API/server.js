@@ -2,7 +2,7 @@ const express = require('express');
 
 require('./config/db.config');
 
-const userModel = require("./model/user.model");
+const userModel = require('./model/user.model');
 
 const app = express();
 
@@ -13,10 +13,14 @@ app.use(express.urlencoded());
 
 // Insert User API
 app.post('/addUser', (req, res) => {
-    console.log(req.body);
+    console.log("User Body : ", req.body);
 
-
-    return res.json({ message: "Student added successfully.." });
+    userModel.create(req.body).then(() => {
+        return res.json({ message: "User added successfully..." });
+    }).catch((error) => {
+        console.log('Insert User Error : ', error);
+        return res.json({ message: "User addtion failed...", error: error });
+    });
 });
 
 // Fetch All Users API
