@@ -4,9 +4,9 @@ const express = require('express');
 
 require('./config/db.config');
 
-const { body, validationResult } = require('express-validator');
 
 const userModel = require('./model/user.model');
+const { validatorList, validation } = require('./middleware/validator.middleware');
 
 const app = express();
 
@@ -20,27 +20,8 @@ app.use(express.json());
 
 
 // Insert User API
-app.post('/addUser', [
-
-    body('name').notEmpty()
-        .withMessage("Name is required...")
-        .isLength({ min: 2, max: 20 }).withMessage("Name must be between 2 and 20 characters"),
-
-    body('email').trim().isEmail().withMessage("Enter valid email id"),
-
-
-], (req, res) => {
+app.post('/addUser', validatorList, validation, (req, res) => {
     console.log("User Body : ", req.body);
-
-
-    // Validation Check
-
-    const error = validationResult(req);
-    // error = ["Name is required"]
-
-    if (!error.isEmpty()) {
-        return res.status(400).json({ status: 400, message: error.array(), error: true });
-    }
 
     userModel.create(req.body).then(() => {
         return res.status(201).json({ status: 201, message: "User added successfully...", error: false });
