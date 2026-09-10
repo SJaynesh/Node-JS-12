@@ -6,7 +6,6 @@ const addProduct = async (req, res) => {
     console.log(req.body);
     console.log(req.file);
 
-
     req.body.image = req.file.path;
 
     const newProduct = await Product.create(req.body);
