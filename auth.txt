@@ -1,0 +1,17 @@
+Auth Types :
+
+Login 
+
+=> email & password
+=> username & password
+=> phone & password => OTP
+=> phone & OTP
+=> email & password => OTP
+=> phone & whatsapp OTP
+
+Register
+
+username
+email
+password
+phone
